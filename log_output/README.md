@@ -1,5 +1,8 @@
 ## Setup
 
+This directory contains the `Log output` service and the Kubernetes resources
+used to run it in the cluster.
+
 ### Run locally
 
 ```bash
@@ -18,6 +21,7 @@ docker build -t log-output:1.1 log_output
 k3d image import log-output:1.1 -c k3s-default
 
 kubectl apply -f log_output/manifests/deployment.yaml
+kubectl rollout restart deployment/log-output
 kubectl get pods
 kubectl logs deployment/log-output
 ```
@@ -50,7 +54,7 @@ exercise.
 For the example submission repository, the link is:
 `https://github.com/mluukkai/KubernetesSubmissions/tree/1.1`
 
-**Result:**
+**Output:**
 
 ```text
 amd@amd ~/projects/fs-kubernetes  (main)$ kubectl logs deployment/log-output
@@ -69,3 +73,10 @@ amd@amd ~/projects/fs-kubernetes  (main)$ kubectl logs deployment/log-output
 2026-05-27T08:37:32.196Z: 047725da-f2b8-4e47-82f1-1fd3d7ba8a2c
 ...
 ```
+
+### 1.3. Declarative approach
+
+
+In your "Log output" application, create a folder for manifests and move your deployment into a declarative file.
+
+Make sure everything still works by restarting and following logs.
