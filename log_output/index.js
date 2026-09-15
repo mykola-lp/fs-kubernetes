@@ -2,4 +2,6 @@ const { randomUUID } = require('crypto');
 
 const randomString = randomUUID();
 
-console.log(`Generated string: ${randomString}`);
+setInterval(() => {
+  console.log(`${new Date().toISOString()}: ${randomString}`);
+}, 5000);
