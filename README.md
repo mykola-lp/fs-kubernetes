@@ -136,3 +136,12 @@ Use `kubectl port-forward` to confirm that the project is accessible and works i
 **Release:** [tag 1.5](https://github.com/mykola-lp/fs-kubernetes/tree/1.5/todo_app)
 
 </details>
+
+<details>
+<summary>1.6 The project, step 4</summary>
+
+Use a NodePort Service to enable access to the project.
+
+**Release:** [tag 1.6](https://github.com/mykola-lp/fs-kubernetes/tree/1.6/todo_app)
+
+</details>
