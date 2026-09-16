@@ -125,6 +125,12 @@ k3d image import todo-app:1.5 -c k3s-default
 kubectl apply -f todo_app/manifests/deployment.yaml
 ```
 
+**Create the NodePort Service:**
+
+```bash
+kubectl apply -f manifests/service.yaml
+```
+
 #### Result
 
 Browser output (via **port-forward**):
