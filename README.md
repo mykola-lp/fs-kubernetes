@@ -80,3 +80,16 @@ As an answer, give the link to the GitHub release that corresponds to the exerci
 **Release:** [tag 1.3](https://github.com/mykola-lp/fs-kubernetes/tree/1.3/log_output)
 
 </details>
+
+<details>
+<summary>1.4 The project, step2</summary>
+
+Create a deployment.yaml for the course project (that you started in Exercise 1.2.)
+
+You won't have access to the port yet but that'll come soon.
+
+As an answer, give the link to the GitHub release that corresponds to the exercise.
+
+**Release:** [tag 1.4](https://github.com/mykola-lp/fs-kubernetes/tree/1.4/todo_app)
+
+</details>
