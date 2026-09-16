@@ -22,6 +22,36 @@ k3d version
 k3d cluster create -a 2
 ```
 
+## Debugging
+
+Kubernetes heals itself most of the time — if a pod dies, it usually just comes back on its own. But when it's own config that's broken, I need to dig in myself.
+
+Go-to commands, in order:
+
+- `kubectl describe <resource>` — shows the full state of a Deployment/Pod, and the `Events` section at the bottom is where errors actually show up.
+- `kubectl logs <pod-name>` — is the app itself actually doing what it's supposed to?
+- `kubectl delete <resource>` — managed by a Deployment, a new one spins up automatically, so this is a safe way to force a restart.
+
+**Example, checking a deployment:**
+
+```bash
+kubectl describe deployment log-output-dep
+```
+
+**Example, checking a pod (events at the bottom are the important part):**
+
+```bash
+kubectl describe pod <pod-name>
+```
+
+**Example, checking logs:**
+
+```bash
+kubectl logs <pod-name>
+```
+
+**Also** [Lens](https://k8slens.dev/) for a visual dashboard instead of digging through kubectl output. It requires a login — [Freelens](https://github.com/freelensapp/freelens) is the free/open-source fork without that requirement.
+
 ## Chapter 1.
 
 **DOESN'T** contain an actual coding exercise. It is an introductory chapter meant to familiarize yourself with the course material and rules, followed by a short check where you need to select the correct statements about the course.
