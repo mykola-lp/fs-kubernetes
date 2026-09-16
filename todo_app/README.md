@@ -2,14 +2,14 @@
 
 A simple web server that starts and logs "Server started in port NNNN". The port is configurable via the `PORT` environment variable. This application will evolve into a full todo application in later exercises.
 
-## Run Locally
+### Run Locally
 
 ```bash
 npm install
 PORT=3000 npm start
 ```
 
-## Run with Docker
+### Run with Docker
 
 ```bash
 docker build -t todo-app:1.2 .
@@ -76,3 +76,13 @@ kubectl apply -f manifests/deployment.yaml
 ![todo_app browser result (declarative)](./docs/1.4-result-declarative.png)
 
 This confirms that the declarative deployment.yaml file automatically restores the pod after deletion (the Deployment controller watches the desired state and immediately creates a replacement) — this is proof that the switch to the declarative approach was successful.
+
+## 1.5-result
+
+Terminal output:
+
+![todo_app terminal result](./docs/1.5-result-terminal.png)
+
+Browser output (via **port-forward**):
+
+![todo_app browser result](./docs/1.5-result-browser.png)
