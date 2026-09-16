@@ -123,3 +123,16 @@ As an answer, give the link to the GitHub release that corresponds to the exerci
 **Release:** [tag 1.4](https://github.com/mykola-lp/fs-kubernetes/tree/1.4/todo_app)
 
 </details>
+
+<details>
+<summary>1.5 The project, step 3</summary>
+
+Make the project respond something to a GET request sent to the / url of the project. A simple HTML page is good, or you can deploy something more complex, like a single-page application.
+
+See [here](https://kubernetes.io/docs/tasks/inject-data-application/define-environment-variable-container/) how you can define environment variables for containers.
+
+Use `kubectl port-forward` to confirm that the project is accessible and works in the cluster by using a browser to access the project.
+
+**Release:** [tag 1.5](https://github.com/mykola-lp/fs-kubernetes/tree/1.5/todo_app)
+
+</details>

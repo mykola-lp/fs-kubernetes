@@ -16,6 +16,9 @@ spec:
         - name: todo-app
           image: todo-app:1.5
           imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "3000"
           resources:
             requests:
               cpu: 100m
