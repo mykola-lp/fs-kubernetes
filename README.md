@@ -49,7 +49,7 @@ As an answer, give the link to the GitHub release that corresponds to the exerci
 * See [here for more info on their requirements for](https://courses.mooc.fi/org/uh-cs/courses/devops-with-kubernetes/chapter-1) your submission repository.
 * For the example submission repository, the link is https://github.com/mluukkai/KubernetesSubmissions/tree/1.1
 
-**Release:** [tag 1.1](https://github.com/mykola-lp/fs-kubernetes/releases/tag/1.1)
+**Release:** [tag 1.1](https://github.com/mykola-lp/fs-kubernetes/tree/1.1/log_output)
 
 </details>
 
@@ -64,7 +64,19 @@ You will not have access to the port when it is running in Kubernetes yet. We wi
  
 As an answer, give the link to the GitHub release that corresponds to the exercise.
  
-**Release:** [tag 1.2](https://github.com/mykola-lp/fs-kubernetes/tree/1.2)
+**Release:** [tag 1.2](https://github.com/mykola-lp/fs-kubernetes/tree/1.2/todo_app)
  
 </details>
 
+<details>
+<summary>1.3 Declarative approach</summary>
+
+In your "Log output" application create a folder for manifests and move your deployment into a declarative file.
+
+Make sure everything still works by restarting and following logs.
+
+As an answer, give the link to the GitHub release that corresponds to the exercise.
+
+**Release:** [tag 1.3](https://github.com/mykola-lp/fs-kubernetes/tree/1.3/log_output)
+
+</details>
