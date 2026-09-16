@@ -45,7 +45,7 @@ kubectl port-forward <pod-name> 3000:3000
 
 Then open `http://localhost:3000/` in your browser.
 
-## Result
+## 1.2-result
 
 Terminal output (`kubectl logs`):
 
@@ -57,6 +57,22 @@ In browser **NOT** working (as expected):
 
 Browser output (via **port-forward**):
 
-![todo_app terminal result](./docs/1.2-result-terminal-port.png)
+![todo_app terminal result (imperative)](./docs/1.2-result-terminal-port.png)
 
-![todo_app browser result](./docs/1.2-result-browser-working-port.png)
+![todo_app browser result (imperative)](./docs/1.2-result-browser-working-port.png)
+
+## Deploy to Kubernetes (declarative)
+
+With the **imperative** approach, you run direct commands (e.g. `kubectl create deployment`) that tell Kubernetes exactly what to do at a given moment, but this state exists only in the cluster's memory and is hard to reproduce or track over time. With the **declarative** approach, you describe the desired end state in a YAML file (e.g. `deployment.yaml`) and apply it with `kubectl apply -f`, letting the Deployment controller handle how to reach and maintain that state. This makes the configuration reproducible, version-controlled with git, and self-healing — if a pod is deleted, the controller automatically recreates it to match the desired state.
+
+> **Note:** `kubectl delete` is an anti-pattern. Prefer updating the image tag in the YAML and re-running `kubectl apply` — Kubernetes will perform a rolling update with no downtime. `delete` was only used once here, to switch from the old imperative deployment to the new declarative one.
+
+```bash
+kubectl apply -f manifests/deployment.yaml
+```
+
+## 1.4-result
+
+![todo_app browser result (declarative)](./docs/1.4-result-declarative.png)
+
+This confirms that the declarative deployment.yaml file automatically restores the pod after deletion (the Deployment controller watches the desired state and immediately creates a replacement) — this is proof that the switch to the declarative approach was successful.
