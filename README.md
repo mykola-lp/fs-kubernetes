@@ -158,3 +158,12 @@ You can just store the random string to the memory.
 **Release:** [tag 1.7](https://github.com/mykola-lp/fs-kubernetes/tree/1.7/log_output)
 
 </details>
+
+<details>
+<summary>1.8 The project, step 5</summary>
+
+Switch to using Ingress instead of NodePort to access the project. You can delete the Ingress of the "Log output" application so they don't interfere with this exercise. We'll look more into paths and routing in the next exercise, and at that point, you can configure the project to run with the "Log output" application side by side.
+
+**Release:** [tag 1.8](https://github.com/mykola-lp/fs-kubernetes/tree/1.8/todo_app)
+
+</details>
