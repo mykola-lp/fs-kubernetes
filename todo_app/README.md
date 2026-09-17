@@ -136,3 +136,15 @@ kubectl apply -f manifests/service.yaml
 Browser output (via **port-forward**):
 
 ![todo_app browser result](./docs/1.6-result-browser.png)
+
+### #1.8
+
+#### Result
+
+Terminal:
+
+![todo_app terminal result](./docs/1.8-result-terminal.png)
+
+Browser:
+
+![todo_app browser result](./docs/1.8-result-browser.png)
