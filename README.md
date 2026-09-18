@@ -167,3 +167,16 @@ Switch to using Ingress instead of NodePort to access the project. You can delet
 **Release:** [tag 1.8](https://github.com/mykola-lp/fs-kubernetes/tree/1.8/todo_app)
 
 </details>
+
+<details>
+<summary>1.9 More services</summary>
+
+Develop a second application that simply responds with "pong 0" to a GET request and increases a counter (the 0) so that you can see how many requests have been sent. The counter should be in memory so it may reset at some point.
+
+Create a new deployment for it and have it share ingress with "Log output" application. Route requests directed '/pingpong' to it.
+
+In future exercises, this second application will be referred to as "ping-pong application". It will be used with "Log output" application.
+
+**Release:** [tag 1.9](https://github.com/mykola-lp/fs-kubernetes/tree/1.9/pingpong)
+
+</details>
