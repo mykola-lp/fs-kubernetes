@@ -34,9 +34,7 @@ kubectl get pods
 
 ### #1.9
 
-Since the task explicitly says to "share ingress with Log output application", this is one Ingress resource with two paths, not two separate ones. Kept it in log_output/manifests/ingress.yaml (where it already lived in 1.7, and had to be restored after being deleted in 1.8). Renamed it from log-output-ingress to dwk-ingress — it's no longer "log_output's Ingress" but a shared Ingress for the whole project. Plan to fold todo_app (1.8) into this same resource too, once I get to the exercises where everything runs side by side. In the browser: http://localhost:8081/pingpong — each page refresh increases the counter.
-
-**Note:** since the task says to "share ingress with Log output application", this is one Ingress resource with two paths, not two separate ones. Kept it in `log_output/manifests/ingress.yaml` (where it already lived in 1.7, and had to be restored after being deleted in 1.8). Renamed it from `log-output-ingress` to `dwk-ingress` — it's no longer "log_output's Ingress" but a shared Ingress for the whole project. Plan to fold `todo_app` (1.8) into this same resource too, once everything runs side by side.
+Since the task says to "share ingress with Log output application", this is one Ingress resource with two paths, not two separate ones. Kept it in `log_output/manifests/ingress.yaml` (where it already lived in 1.7, and had to be restored after being deleted in 1.8). Renamed it from `log-output-ingress` to `dwk-ingress` — it's no longer "log_output's Ingress" but a shared Ingress for the whole project. Plan to fold `todo_app` (1.8) into this same resource too, once everything runs side by side.
 
 #### Result
 
