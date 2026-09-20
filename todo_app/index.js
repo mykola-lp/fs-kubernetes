@@ -131,3 +131,13 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   console.log(`Server started in port ${PORT}`);
 });
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received: container is shutting down');
+  console.log(`Last known image cache state: ${fs.existsSync(imagePath) ? 'image present on volume' : 'no image cached yet'}`);
+
+  server.close(() => {
+    console.log('Server closed gracefully');
+    process.exit(0);
+  });
+});
