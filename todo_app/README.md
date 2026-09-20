@@ -154,3 +154,7 @@ Terminal:
 Browser:
 
 ![todo_app browser result](./docs/1.12-result-browser.png)
+
+**Testing graceful shutdown:** ran `kubectl logs -f <pod-name>` in one terminal, then `kubectl delete pod <pod-name>` in another. The pod logs confirmed a `SIGTERM` was received before shutdown, and that the image was still present on the volume at that point — the server closed gracefully instead of just disappearing.
+
+![todo_app terminal result](./docs/1.12-result-terminal1.png)
