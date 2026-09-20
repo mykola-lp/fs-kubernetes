@@ -12,9 +12,25 @@ spec:
       labels:
         app: log-output
     spec:
+      volumes:
+        - name: shared-status
+          emptyDir: {}
       containers:
-        - name: log-output
-          image: log-output:1.7
+        - name: writer
+          image: log-output-writer:1.10
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: shared-status
+              mountPath: /usr/src/app/files
+        - name: reader
+          image: log-output-reader:1.10
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -26,3 +42,6 @@ spec:
             limits:
               cpu: 100m
               memory: 128Mi
+          volumeMounts:
+            - name: shared-status
+              mountPath: /usr/src/app/files

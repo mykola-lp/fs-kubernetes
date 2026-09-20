@@ -88,3 +88,41 @@ http://localhost:8081/
 **Browser:**
 
 ![Log output result (browser)](./docs/1.7-result-browser.png)
+
+### #1.10
+
+**Deploy to Kubernetes (two containers, shared volume)**
+
+```bash
+# Build both images separately
+docker build -t log-output-writer:1.10 ./writer
+docker build -t log-output-reader:1.10 ./reader
+
+# Import both images into the k3d cluster
+k3d image import log-output-writer:1.10 log-output-reader:1.10 -c k3s-default
+
+# Apply the deployment (writer + reader in one pod, sharing an emptyDir volume)
+kubectl apply -f manifests/deployment.yaml
+
+# Check running pods — 2/2 means both containers in the pod are up
+kubectl get pods
+
+# View logs for each container separately (required in a multi-container pod)
+kubectl logs <pod-name> -c writer
+kubectl logs <pod-name> -c reader
+
+# Check the shared file's content via the reader's HTTP endpoint
+curl http://localhost:8081/; echo
+```
+
+Or open `http://localhost:8081/` in the browser.
+
+#### Result
+
+Terminal:
+
+![Log output result (terminal)](./docs/1.10-result-terminal.png)
+
+Browser:
+
+![Log output result (browser)](./docs/1.10-result-browser.png)
