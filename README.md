@@ -52,6 +52,12 @@ kubectl logs <pod-name>
 
 **Also** [Lens](https://k8slens.dev/) for a visual dashboard instead of digging through kubectl output. It requires a login — [Freelens](https://github.com/freelensapp/freelens) is the free/open-source fork without that requirement.
 
+## Storage
+
+**emptyDir** — a shared folder inside a single pod, used to pass files between two containers running together (like `writer`/`reader` in 1.10). It only exists as long as the pod exists — if the pod restarts or gets deleted, the data is gone and starts fresh. Good for temporary sharing, not for anything that needs to survive.
+
+**PersistentVolume (PV) + PersistentVolumeClaim (PVC)** — storage that lives independently of any pod. A PV represents actual disk space (e.g. a folder on a cluster node), a PVC is how a pod "claims" that storage for its own use. Since the data isn't tied to the pod's lifecycle, it survives pod restarts, deletions, and recreations. Use this whenever data actually needs to persist.
+
 ## Chapter 1.
 
 **DOESN'T** contain an actual coding exercise. It is an introductory chapter meant to familiarize yourself with the course material and rules, followed by a short check where you need to select the correct statements about the course.
@@ -190,5 +196,16 @@ Split the "Log output" application into two different containers within a single
 * The other reads that file and provides the content in the HTTP GET endpoint for the user to see
 
 **Release:** [tag 1.10](https://github.com/mykola-lp/fs-kubernetes/tree/1.10/log_output)
+
+</details>
+
+<details>
+<summary>1.11 Persisting data</summary>
+
+Let's share data between "Ping-pong" and "Log output" applications using persistent volumes. Create both a PersistentVolume and PersistentVolumeClaim and alter the Deployment to utilize it. As PersistentVolumes are often maintained by cluster administrators rather than developers and those are not application specific you should keep the definition for those separated, perhaps in own folder.
+
+Save the number of requests to the "Ping-pong" application into a file in the volume and output it with the timestamp and the random string when sending a request to our "Log output" application.
+
+**Release:** [tag 1.11](https://github.com/mykola-lp/fs-kubernetes/tree/1.11)
 
 </details>
