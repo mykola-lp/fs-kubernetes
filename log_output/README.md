@@ -126,3 +126,7 @@ Terminal:
 Browser:
 
 ![Log output result (browser)](./docs/1.10-result-browser.png)
+
+### #1.11
+
+![Log output result (terminal)](./docs/1.11-result.png)

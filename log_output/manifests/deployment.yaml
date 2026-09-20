@@ -13,8 +13,11 @@ spec:
         app: log-output
     spec:
       volumes:
-        - name: shared-status
+        - name: shared-status        # emptyDir, writer<->reader (from 1.10)
           emptyDir: {}
+        - name: shared-storage       # PVC, shared with pingpong
+          persistentVolumeClaim:
+            claimName: shared-pvc
       containers:
         - name: writer
           image: log-output-writer:1.10
@@ -30,7 +33,7 @@ spec:
             - name: shared-status
               mountPath: /usr/src/app/files
         - name: reader
-          image: log-output-reader:1.10
+          image: log-output-reader:1.11
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -45,3 +48,5 @@ spec:
           volumeMounts:
             - name: shared-status
               mountPath: /usr/src/app/files
+            - name: shared-storage
+              mountPath: /usr/src/app/shared
