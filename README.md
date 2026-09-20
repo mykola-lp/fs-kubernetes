@@ -180,3 +180,15 @@ In future exercises, this second application will be referred to as "ping-pong a
 **Release:** [tag 1.9](https://github.com/mykola-lp/fs-kubernetes/tree/1.9/pingpong)
 
 </details>
+
+<details>
+<summary>1.10 Even more services</summary>
+
+Split the "Log output" application into two different containers within a single pod:
+
+* One generates a random string on startup and writes a line with the random string and timestamp every 5 seconds into a file.
+* The other reads that file and provides the content in the HTTP GET endpoint for the user to see
+
+**Release:** [tag 1.10](https://github.com/mykola-lp/fs-kubernetes/tree/1.10/log_output)
+
+</details>
