@@ -215,7 +215,11 @@ Save the number of requests to the "Ping-pong" application into a file in the vo
 
 Since the project looks a bit boring right now, let's add a picture!
 
-The goal is to add an hourly image to the project. Get a random picture from Lorem Picsum and display it in the project, cached for 10 minutes on a persistent volume so it survives container restarts.
+The goal is to add an hourly image to the project. Get a random picture from Lorem Picsum like `https://picsum.photos/1200` and display it in the project. Find a way to store the image so it stays the same for 10 minutes.
+
+Make sure to cache the image into a persistent volume so that the API isn't needed for new images every time we access the application or the container crashes.
+
+The best way to test what happens when your container shuts down is likely by shutting down the container, so you can add logic for that as well, for testing purposes.
 
 **Release:** [tag 1.12](https://github.com/mykola-lp/fs-kubernetes/tree/1.12/todo_app)
 
