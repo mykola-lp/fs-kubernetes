@@ -209,3 +209,14 @@ Save the number of requests to the "Ping-pong" application into a file in the vo
 **Release:** [tag 1.11](https://github.com/mykola-lp/fs-kubernetes/tree/1.11)
 
 </details>
+
+<details>
+<summary>1.12 The project, step 6</summary>
+
+Since the project looks a bit boring right now, let's add a picture!
+
+The goal is to add an hourly image to the project. Get a random picture from Lorem Picsum and display it in the project, cached for 10 minutes on a persistent volume so it survives container restarts.
+
+**Release:** [tag 1.12](https://github.com/mykola-lp/fs-kubernetes/tree/1.12/todo_app)
+
+</details>
