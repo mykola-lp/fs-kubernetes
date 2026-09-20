@@ -12,17 +12,24 @@ spec:
       labels:
         app: todo-app
     spec:
+      volumes:
+        - name: image-storage
+          persistentVolumeClaim:
+            claimName: todo-app-pvc
       containers:
         - name: todo-app
-          image: todo-app:1.5
+          image: todo-app:1.12
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
               value: "3000"
+          volumeMounts:
+            - name: image-storage
+              mountPath: /usr/src/app/files
           resources:
             requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
               cpu: 100m
               memory: 128Mi
-            limits:
-              cpu: 500m
-              memory: 256Mi

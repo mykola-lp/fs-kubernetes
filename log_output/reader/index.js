@@ -7,7 +7,13 @@ const statusPath = '/usr/src/app/files/status.log';
 const counterPath = '/usr/src/app/shared/counter.txt';
 
 const server = http.createServer((req, res) => {
-  if (req.method === 'GET' && req.url === '/') {
+  if (
+    req.method === 'GET' &&
+    (
+      req.url === '/' ||
+      req.url === '/status'
+    )
+  ) {
     const status = fs.existsSync(statusPath)
       ? fs.readFileSync(statusPath, 'utf-8').trim()
       : 'No data yet';

@@ -33,7 +33,7 @@ spec:
             - name: shared-status
               mountPath: /usr/src/app/files
         - name: reader
-          image: log-output-reader:1.11
+          image: log-output-reader:1.12
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT

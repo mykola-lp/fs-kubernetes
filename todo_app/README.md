@@ -53,7 +53,7 @@ Then open `http://localhost:3000/` in your browser.
 
 #### Result
 
-Terminal output (`kubectl logs`):
+Terminal (`kubectl logs`):
 
 ![todo_app terminal result](./docs/1.2-result-terminal.png)
 
@@ -61,7 +61,7 @@ In browser **NOT** working (as expected):
 
 ![todo_app browser result](./docs/1.2-result-browser-not-working.png)
 
-Browser output (via **port-forward**):
+Browser (via **port-forward**):
 
 ![todo_app terminal result (imperative)](./docs/1.2-result-terminal-port.png)
 
@@ -87,13 +87,11 @@ This confirms that the declarative deployment.yaml file automatically restores t
 
 ### #1.5
 
-#### Result
-
-Terminal output:
+Terminal:
 
 ![todo_app terminal result](./docs/1.5-result-terminal.png)
 
-Browser output (via **port-forward**):
+Browser (via **port-forward**):
 
 ![todo_app browser result](./docs/1.5-result-browser.png)
 
@@ -133,13 +131,11 @@ kubectl apply -f manifests/service.yaml
 
 #### Result
 
-Browser output (via **port-forward**):
+Browser (via **port-forward**):
 
 ![todo_app browser result](./docs/1.6-result-browser.png)
 
 ### #1.8
-
-#### Result
 
 Terminal:
 
@@ -148,3 +144,13 @@ Terminal:
 Browser:
 
 ![todo_app browser result](./docs/1.8-result-browser.png)
+
+### #1.12
+
+Terminal:
+
+![todo_app terminal result](./docs/1.12-result-terminal.png)
+
+Browser:
+
+![todo_app browser result](./docs/1.12-result-browser.png)
