@@ -224,3 +224,16 @@ The best way to test what happens when your container shuts down is likely by sh
 **Release:** [tag 1.12](https://github.com/mykola-lp/fs-kubernetes/tree/1.12/todo_app)
 
 </details>
+
+<details>
+<summary>1.13 The project, step 7</summary>
+
+It is time to start adding some real functionality to our project! As promised earlier, the project shall have a todo app functionality. So in this exercise
+
+1. add an input field. The input should not take todos that are over 140 characters long.
+2. add a send button. It does not have to send the todo yet.
+3. add a list of the existing todos with some hardcoded todos.
+
+**Release:** [tag 1.13](https://github.com/mykola-lp/fs-kubernetes/tree/1.13/todo_app)
+
+</details>
