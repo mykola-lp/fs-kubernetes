@@ -43,7 +43,7 @@ kubectl logs -f <pod-name>
 
 #### Result
 
-![Log output result (imperative)](./docs/1.1-result.png)
+![Log output result (imperative)](./docs/1.1-result-terminal.png)
 
 ### #1.3
 
@@ -129,4 +129,33 @@ Browser:
 
 ### #1.11
 
-![Log output result (terminal)](./docs/1.11-result.png)
+![Log output result (terminal)](./docs/1.11-result-terminal.png)
+
+### #2.1
+
+Part1:
+
+![Log output result (terminal)](./docs/2.1-result-terminal1.png)
+
+For **debugging and testing** the connection to the backend Service, instead of using:
+
+```bash
+kubectl exec -it my-busybox -- sh
+/ # wget -qO - http://todo-backend-svc:2345
+```
+
+I used a **ubuntu** temporary debug Pod:
+
+```bash
+kubectl run my-debug --image=ubuntu:24.04 -- sleep infinity
+```
+
+After testing, I **removed it**:
+
+```bash
+kubectl delete pod my-debug
+```
+
+Part2:
+
+![Log output result (terminal)](./docs/2.1-result-terminal2.png)
