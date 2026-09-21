@@ -15,9 +15,6 @@ spec:
       volumes:
         - name: shared-status        # emptyDir, writer<->reader (from 1.10)
           emptyDir: {}
-        - name: shared-storage       # PVC, shared with pingpong
-          persistentVolumeClaim:
-            claimName: shared-pvc
       containers:
         - name: writer
           image: log-output-writer:1.10
@@ -48,5 +45,3 @@ spec:
           volumeMounts:
             - name: shared-status
               mountPath: /usr/src/app/files
-            - name: shared-storage
-              mountPath: /usr/src/app/shared

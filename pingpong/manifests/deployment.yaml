@@ -12,10 +12,6 @@ spec:
       labels:
         app: pingpong
     spec:
-      volumes:
-        - name: shared-storage
-          persistentVolumeClaim:
-            claimName: shared-pvc
       containers:
         - name: pingpong
           image: pingpong:1.11
@@ -23,9 +19,6 @@ spec:
           env:
             - name: PORT
               value: "3000"
-          volumeMounts:
-            - name: shared-storage
-              mountPath: /usr/src/app/files
           resources:
             requests:
               cpu: 10m
