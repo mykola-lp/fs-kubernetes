@@ -52,6 +52,25 @@ kubectl logs <pod-name>
 
 **Also** [Lens](https://k8slens.dev/) for a visual dashboard instead of digging through kubectl output. It requires a login — [Freelens](https://github.com/freelensapp/freelens) is the free/open-source fork without that requirement.
 
+## Key Concepts
+
+**Cluster** — a group of machines (nodes) working together as one unit. One or more are server nodes (control-plane, make decisions), the rest are agent nodes (run the actual workloads).
+
+**Pod** — the smallest deployable unit in Kubernetes. Usually runs one container, but can run several that need to share resources (like `writer`/`reader` in 1.10). Pods are disposable — Kubernetes recreates them freely, don't rely on a specific pod surviving.
+
+**Deployment** — describes the desired state for a set of pods (which image, how many replicas, resource limits). The Deployment controller keeps the actual state matching this — restarts crashed pods, handles rolling updates when the image tag changes.
+
+**Service** — a stable network address for a set of pods (pods themselves have changing IPs). Types used so far: `ClusterIP` (internal only), `NodePort` (exposes a port on every node, simple but not production-grade).
+
+**Ingress** — routes external HTTP traffic into the cluster based on path/host, forwarding to the right Service. More flexible than NodePort — one Ingress can route multiple paths (`/`, `/status`, `/pingpong`) to different apps. Handled by an Ingress controller (Traefik, built into k3s).
+
+**Volume** — a way to give a pod/container storage. `emptyDir` = temporary, tied to the pod's lifecycle (gone when pod dies). `PersistentVolume` + `PersistentVolumeClaim` = storage independent of any pod's lifecycle, survives restarts/deletions.
+
+**k8s vs k3s vs k3d**
+- `k8s` — just short for "Kubernetes" (not a tool, just a common abbreviation)
+- `k3s` — a lightweight Kubernetes distribution (by Rancher), same core concepts, smaller footprint
+- `k3d` — a wrapper that runs k3s inside Docker containers, used to get a local Kubernetes cluster running quickly on a dev machine
+
 ## Storage
 
 **emptyDir** — a shared folder inside a single pod, used to pass files between two containers running together (like `writer`/`reader` in 1.10). It only exists as long as the pod exists — if the pod restarts or gets deleted, the data is gone and starts fresh. Good for temporary sharing, not for anything that needs to survive.
