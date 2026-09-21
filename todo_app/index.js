@@ -15,7 +15,9 @@ const html = `
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>Todo App</title>
+
   <style>
     body {
       font-family: sans-serif;
@@ -24,37 +26,96 @@ const html = `
       align-items: center;
       padding: 2rem 1rem;
       margin: 0;
+      color: #333;
     }
 
     h1 {
       text-align: center;
     }
+    
+    h2 {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+    }
 
     img {
       max-width: 90vw;
-      width: 500px;
+      width: 400px;
       border: 6px solid #e0e0e0;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      margin-bottom: 2rem;
     }
 
-    p {
-      text-align: center;
-      margin-top: 1.5rem;
-      color: #555;
+    .todo-form {
+      display: flex;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+
+    .todo-form input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid #4caf50;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .todo-form button {
+      padding: 0.75rem 1.5rem;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .todo-form button:hover {
+      background: #43a047;
+    }
+
+    .todo-list {
+      width: 100%;
+      max-width: 600px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .todo-list li {
+      background: #f5f5f5;
+      border-left: 4px solid #4caf50;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 4px;
     }
 
     @media (max-width: 600px) {
-      img {
-        width: 100%;
-      }
+      img { width: 100%; }
     }
   </style>
 </head>
 <body>
   <h1>Todo App</h1>
+
   <img src="/image" alt="Random image">
-  <p>DevOps with Kubernetes 2026</p>
+
+  <form class="todo-form" onsubmit="return false;">
+    <input type="text" id="todo-input" maxlength="140" placeholder="Enter a new todo (max 140 characters)">
+    <button type="submit" id="send-button">Send</button>
+  </form>
+
+  <h2>Todos</h2>
+
+  <ul class="todo-list">
+    <li>Learn Kubernetes basics</li>
+    <li>Deploy application to cluster</li>
+    <li>Configure persistent volumes</li>
+  </ul>
 </body>
 </html>
 `;
