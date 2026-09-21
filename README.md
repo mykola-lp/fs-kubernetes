@@ -24,33 +24,81 @@ k3d cluster create -a 2
 
 ## Debugging
 
-Kubernetes heals itself most of the time — if a pod dies, it usually just comes back on its own. But when it's own config that's broken, I need to dig in myself.
+Kubernetes heals itself most of the time — if a pod dies, it usually just comes back on its own. But when the configuration or application is broken, I need to inspect the resources and test connectivity from inside the cluster.
 
-Go-to commands, in order:
+**Go-to commands, in order:**
 
-- `kubectl describe <resource>` — shows the full state of a Deployment/Pod, and the `Events` section at the bottom is where errors actually show up.
-- `kubectl logs <pod-name>` — is the app itself actually doing what it's supposed to?
-- `kubectl delete <resource>` — managed by a Deployment, a new one spins up automatically, so this is a safe way to force a restart.
+* `kubectl describe <resource>` — shows the current state of a Deployment/Pod. The `Events` section at the bottom is especially useful for configuration and scheduling errors.
+* `kubectl logs <pod-name>` — shows the application output and helps determine whether the container itself is working as expected.
+* `kubectl delete <resource>` — for resources managed by a Deployment, deleting a Pod forces Kubernetes to create a replacement and can be useful when testing restart/recovery behaviour.
 
-**Example, checking a deployment:**
+**Examples:**
 
 ```bash
+# Check a Deployment
 kubectl describe deployment log-output-dep
-```
 
-**Example, checking a pod (events at the bottom are the important part):**
-
-```bash
+# Check a Pod
 kubectl describe pod <pod-name>
-```
 
-**Example, checking logs:**
-
-```bash
+# Check container logs
 kubectl logs <pod-name>
 ```
 
-**Also** [Lens](https://k8slens.dev/) for a visual dashboard instead of digging through kubectl output. It requires a login — [Freelens](https://github.com/freelensapp/freelens) is the free/open-source fork without that requirement.
+### **Temporary debug Pods**
+
+For network debugging and testing connectivity between Services and Pods, a temporary debug Pod can be more convenient than entering an existing application container.
+
+```bash
+# Start a temporary Ubuntu Pod
+kubectl run my-debug --image=ubuntu:24.04 -- sleep infinity
+
+# Open a shell inside it
+kubectl exec -it my-debug -- sh
+
+# Example request from inside the cluster
+curl http://localhost:8081/status; echo
+
+# Remove the debug Pod when finished
+kubectl delete pod my-debug
+```
+
+Other useful debugging images:
+
+* [`curlimages/curl`](https://hub.docker.com/r/curlimages/curl) — lightweight image focused on `curl`, useful for testing HTTP/HTTPS endpoints.
+* [`nicolaka/netshoot`](https://github.com/nicolaka/netshoot) — networking troubleshooting image with tools such as `curl`, `wget`, `dig`, `nslookup`, `nc`, `tcpdump`, and more.
+* `busybox` — very small image that is useful for basic shell and networking checks.
+
+For example, with `curlimages/curl`:
+
+```bash
+kubectl run curl-debug --rm -it \
+  --image=curlimages/curl \
+  --restart=Never -- \
+  curl http://localhost:8081/status
+```
+
+With `netshoot`:
+
+```bash
+kubectl run netshoot --rm -it \
+  --image=nicolaka/netshoot \
+  --restart=Never -- bash
+```
+
+With `busybox`:
+
+```bash
+kubectl run busybox-debug --rm -it \
+  --image=busybox \
+  --restart=Never -- \
+  wget -qO - http://localhost:8081/status
+```
+
+**Visual tools:**
+
+* [Lens](https://k8slens.dev/) — Kubernetes IDE/dashboard for inspecting clusters, Pods, Deployments, Services and logs.
+* [Freelens](https://github.com/freelensapp/freelens) — open-source fork of Lens.
 
 ## Key Concepts
 
@@ -116,9 +164,7 @@ As an answer, give the link to the GitHub release that corresponds to the exerci
 Create a web server that outputs "Server started in port NNNN" when it is started and deploy it into your Kubernetes cluster. Please make it so that an environment variable PORT can be used to choose the used port. You may call the server todo app since it will, amongst other things, provide the functionality of a todo application pretty soon.
  
 You will not have access to the port when it is running in Kubernetes yet. We will configure the access when we get to networking.
- 
-As an answer, give the link to the GitHub release that corresponds to the exercise.
- 
+
 **Release:** [tag 1.2](https://github.com/mykola-lp/fs-kubernetes/tree/1.2/todo_app)
  
 </details>
@@ -130,8 +176,6 @@ In your "Log output" application create a folder for manifests and move your dep
 
 Make sure everything still works by restarting and following logs.
 
-As an answer, give the link to the GitHub release that corresponds to the exercise.
-
 **Release:** [tag 1.3](https://github.com/mykola-lp/fs-kubernetes/tree/1.3/log_output)
 
 </details>
@@ -142,8 +186,6 @@ As an answer, give the link to the GitHub release that corresponds to the exerci
 Create a deployment.yaml for the course project (that you started in Exercise 1.2.)
 
 You won't have access to the port yet but that'll come soon.
-
-As an answer, give the link to the GitHub release that corresponds to the exercise.
 
 **Release:** [tag 1.4](https://github.com/mykola-lp/fs-kubernetes/tree/1.4/todo_app)
 
@@ -254,5 +296,23 @@ It is time to start adding some real functionality to our project! As promised e
 3. add a list of the existing todos with some hardcoded todos.
 
 **Release:** [tag 1.13](https://github.com/mykola-lp/fs-kubernetes/tree/1.13/todo_app)
+
+</details>
+
+## Chapter 3.
+
+<details>
+<summary>2.1 Connecting pods</summary>
+
+Connect the Log output application and the Ping pong application with HTTP. So, instead of sharing data via files, use an HTTP GET endpoint in the Ping pong app to respond with the number of pongs for the Log output app. Remove the volume between the two applications for the time being.
+
+The response of the HTTP GET to Log output will stay the same:
+
+```
+2026-05-18T12:15:17.705Z: 8523ecb1-c716-4cb6-a044-b9e83bb98e43.
+Ping / Pongs: 3
+```
+
+**Release:** [tag 2.1](https://github.com/mykola-lp/fs-kubernetes/tree/2.1)
 
 </details>
