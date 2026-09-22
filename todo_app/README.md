@@ -173,8 +173,12 @@ After:
 
 Before:
 
-![todo_backend browser result](./docs/2.2-result-browser1.png)
+![todo_app browser result](./docs/2.2-result-browser1.png)
 
 After:
 
-![todo_backend browser result](./docs/2.2-result-browser2.png)
+![todo_app browser result](./docs/2.2-result-browser2.png)
+
+### #2.3
+
+![todo_app terminal result](./docs/2.3-result-terminal.png)
