@@ -337,3 +337,12 @@ This happens because once a local persistent volume is released, it cannot be re
 **Release:** [tag 2.2](https://github.com/mykola-lp/fs-kubernetes/tree/2.2/todo-backend)
 
 </details>
+
+<details>
+<summary>2.3 Keep them separated</summary>
+
+Create a namespace called exercises for the applications in the exercises. Move the "Log output" and "Ping-pong" to that namespace and use that in the future for all of the exercises, except the project that shall have a separate namespace. You can follow the course material using the default namespace.
+
+**Release:** [tag 2.3](https://github.com/mykola-lp/fs-kubernetes/tree/2.3)
+
+</details>
