@@ -114,6 +114,7 @@ function renderHtml(todos) {
           <input
             type="text"
             id="todo-input"
+            name="content"
             maxlength="140"
             placeholder="Enter a new todo (max 140 characters)"
           >
