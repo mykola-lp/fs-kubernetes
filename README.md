@@ -334,6 +334,6 @@ After this exercise, you should be able to create new todos using the form, and 
 
 This happens because once a local persistent volume is released, it cannot be rebound automatically. To resolve this, you must delete and recreate the persistent volume so that the PVC can bind to it successfully.
 
-**Release:** [tag 2.2](https://github.com/mykola-lp/fs-kubernetes/tree/2.2)
+**Release:** [tag 2.2](https://github.com/mykola-lp/fs-kubernetes/tree/2.2/todo-backend)
 
 </details>
