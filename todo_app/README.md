@@ -168,3 +168,13 @@ Before:
 After:
 
 ![todo_app browser result](./docs/1.13-result-browser2.png)
+
+### #2.2
+
+Before:
+
+![todo_backend browser result](./docs/2.2-result-browser1.png)
+
+After:
+
+![todo_backend browser result](./docs/2.2-result-browser2.png)
