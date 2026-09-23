@@ -346,3 +346,12 @@ Create a namespace called exercises for the applications in the exercises. Move 
 **Release:** [tag 2.3](https://github.com/mykola-lp/fs-kubernetes/tree/2.3)
 
 </details>
+
+<details>
+<summary>2.4 The project, step 9</summary>
+
+Create a namespace called project for the project and move everything related to the project to that namespace. Use the new namespace in the future for all the project related exercises.
+
+**Release:** [tag 2.4](https://github.com/mykola-lp/fs-kubernetes/tree/2.4)
+
+</details>
