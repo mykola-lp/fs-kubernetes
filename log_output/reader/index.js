@@ -2,7 +2,11 @@ const http = require('http');
 const fs = require('fs');
 
 const PORT = process.env.PORT || 3000;
+const MESSAGE = process.env.MESSAGE;
+
 const statusPath = '/usr/src/app/files/status.log';
+const counterPath = '/usr/src/app/shared/counter.txt';
+const infoFilePath = '/usr/src/app/config/information.txt';
 
 function getPingsCount() {
   return new Promise((resolve) => {
@@ -28,8 +32,17 @@ const server = http.createServer(async (req, res) => {
 
     const pongs = await getPingsCount();
 
+    const fileContent = fs.existsSync(infoFilePath)
+      ? fs.readFileSync(infoFilePath, 'utf-8').trim()
+      : 'no file';
+
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end(`${status}.\nPing / Pongs: ${pongs}`);
+    res.end(
+      `file content: ${fileContent}\n` +
+      `env variable: MESSAGE=${MESSAGE}\n` +
+      `${status}.\n` +
+      `Ping / Pongs: ${pongs}`
+    );
     return;
   }
 
