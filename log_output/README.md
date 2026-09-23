@@ -159,3 +159,7 @@ kubectl delete pod my-debug
 Part2:
 
 ![Log output result (terminal)](./docs/2.1-result-terminal2.png)
+
+### #2.5
+
+![Log output result (terminal)](./docs/2.5-result-terminal.png)
