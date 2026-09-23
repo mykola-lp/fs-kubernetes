@@ -19,11 +19,11 @@ spec:
             claimName: todo-app-pvc
       containers:
         - name: todo-app
-          image: todo-app:2.2
+          image: todo-app:2.6
           imagePullPolicy: IfNotPresent
-          env:
-            - name: PORT
-              value: "3000"
+          envFrom:
+            - configMapRef:
+                name: todo-app-config
           volumeMounts:
             - name: image-storage
               mountPath: /usr/src/app/files

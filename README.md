@@ -384,8 +384,18 @@ file content: this text is from file
 env variable: MESSAGE=hello world
 2026-05-18T12:15:17.705Z: 8523ecb1-c716-4cb6-a044-b9e83bb98e43.
 Ping / Pongs: 3
-````
+```
 
 **Release:** [tag 2.5](https://github.com/mykola-lp/fs-kubernetes/tree/2.5/log_output)
+
+</details>
+
+<details>
+
+<summary>2.6 The project, step 10</summary>
+
+Make sure that your project has no hard coded ports, URLs, or other configurations in the source code. Pass all the configurations to pods as env variables that are defined either in a ConfigMap or in Deployments.
+
+**Release:** [tag 2.6](https://github.com/mykola-lp/fs-kubernetes/tree/2.6/log_output)
 
 </details>

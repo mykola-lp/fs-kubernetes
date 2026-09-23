@@ -7,6 +7,4 @@ RUN npm install --production
 
 COPY . .
 
-ENV PORT=3000
-
 CMD ["npm", "start"]
