@@ -182,3 +182,9 @@ After:
 ### #2.3
 
 ![todo_app terminal result](./docs/2.3-result-terminal.png)
+
+### #2.4
+
+**Note:** the bulk of this exercise (creating the `exercises`/`project` namespaces, moving all resources, splitting the shared Ingress) was already done as part of 2.3. This commit just verifies everything landed correctly in the `project` namespace and removes one stale, unused manifest left over from the split.
+
+![todo_app terminal result](./docs/2.3-result-terminal.png)
