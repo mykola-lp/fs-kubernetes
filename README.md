@@ -355,3 +355,37 @@ Create a namespace called project for the project and move everything related to
 **Release:** [tag 2.4](https://github.com/mykola-lp/fs-kubernetes/tree/2.4)
 
 </details>
+
+<details>
+<summary>2.5 Documentation and ConfigMaps</summary>
+
+Use the official Kubernetes documentation for this exercise:
+
+- [ConfigMaps](https://kubernetes.io/docs/concepts/configuration/configmap/)
+- [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/)
+
+These resources contain everything you need to complete the exercise.
+
+Create a **ConfigMap** for the **Log output** application. The ConfigMap should define:
+
+- one file: `information.txt`
+- one environment variable: `MESSAGE`
+
+The application should:
+
+- mount `information.txt` as a volume;
+- set the `MESSAGE` environment variable;
+- print the content of both the file and the environment variable in addition to the usual output.
+
+Expected output:
+
+```text
+file content: this text is from file
+env variable: MESSAGE=hello world
+2026-05-18T12:15:17.705Z: 8523ecb1-c716-4cb6-a044-b9e83bb98e43.
+Ping / Pongs: 3
+````
+
+**Release:** [tag 2.5](https://github.com/mykola-lp/fs-kubernetes/tree/2.5/log_output)
+
+</details>
