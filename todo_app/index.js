@@ -8,9 +8,9 @@ const PORT = process.env.PORT || 3000;
 const imagePath = '/usr/src/app/files/image.jpg';
 const metaPath = '/usr/src/app/files/image-meta.json';
 
-const CACHE_MINUTES = 10;
-
-const BACKEND_URL = 'http://todo-backend-svc:2345/todos';
+const CACHE_MINUTES = Number(process.env.CACHE_MINUTES);
+const BACKEND_URL = process.env.BACKEND_URL;
+const IMAGE_URL = process.env.IMAGE_URL;
 
 function renderHtml(todos) {
   const todoItems = todos.map((t) => `<li>${t.content}</li>`).join('\n');
@@ -133,7 +133,7 @@ function renderHtml(todos) {
 }
 
 function downloadImage(callback) {
-  https.get('https://picsum.photos/1200', (res) => {
+  https.get(IMAGE_URL, (res) => {
     if (
       res.statusCode >= 300 &&
       res.statusCode < 400 &&
