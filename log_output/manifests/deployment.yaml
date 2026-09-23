@@ -16,9 +16,6 @@ spec:
       volumes:
         - name: shared-status        # emptyDir, writer<->reader (from 1.10)
           emptyDir: {}
-        - name: shared-storage
-          persistentVolumeClaim:
-            claimName: shared-pvc
         - name: config-volume
           configMap:
             name: log-output-config
@@ -28,6 +25,19 @@ spec:
       containers:
         - name: writer
           image: log-output-writer:1.10
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 10m
+              memory: 16Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
+          volumeMounts:
+            - name: shared-status
+              mountPath: /usr/src/app/files
+        - name: reader
+          image: log-output-reader:2.5
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
@@ -47,24 +57,6 @@ spec:
           volumeMounts:
             - name: shared-status
               mountPath: /usr/src/app/files
-            - name: shared-storage
-              mountPath: /usr/src/app/shared
             - name: config-volume
               mountPath: /usr/src/app/config
               readOnly: true
-        - name: reader
-          image: log-output-reader:2.1
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: PORT
-              value: "3000"
-          resources:
-            requests:
-              cpu: 10m
-              memory: 16Mi
-            limits:
-              cpu: 100m
-              memory: 128Mi
-          volumeMounts:
-            - name: shared-status
-              mountPath: /usr/src/app/files
