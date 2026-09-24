@@ -420,3 +420,14 @@ Did not find any relations.
 **Release:** [tag 2.7](https://github.com/mykola-lp/fs-kubernetes/tree/2.7/pingpong)
 
 </details>
+
+<details>
+<summary>2.8 The project, step 11</summary>
+
+Create a database and save the todos there. Again, the database should be defined as a stateful set with one replica.
+
+Use Secrets and/or ConfigMaps to have the backend access the database.
+
+**Release:** [tag 2.8](https://github.com/mykola-lp/fs-kubernetes/tree/2.8/todo-backend)
+
+</details>
