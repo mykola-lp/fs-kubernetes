@@ -40,10 +40,14 @@ Since the task says to "share ingress with Log output application", this is one 
 
 Terminal:
 
-![pingpong_output result part one](./docs/1.9-result-part1.png)
+![pingpong_output result part one](./docs/1.9-result-terminal-part1.png)
 
-![pingpong_output result part two](./docs/1.9-result-part2.png)
+![pingpong_output result part two](./docs/1.9-result-terminal-part2.png)
 
 In the browser: `http://localhost:8081/pingpong` — each page refresh increases the counter.
 
 ![pingpong_output browser result](./docs/1.9-result-browser.png)
+
+### #2.7
+
+![pingpong_output result](./docs/2.7-result-terminal.png)
