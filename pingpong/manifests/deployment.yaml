@@ -15,11 +15,28 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: pingpong:2.1
+          image: pingpong:2.7
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
               value: "3000"
+            - name: POSTGRES_HOST
+              value: postgres-svc
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_DB
           resources:
             requests:
               cpu: 10m
