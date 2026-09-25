@@ -431,3 +431,16 @@ Use Secrets and/or ConfigMaps to have the backend access the database.
 **Release:** [tag 2.8](https://github.com/mykola-lp/fs-kubernetes/tree/2.8/todo-backend)
 
 </details>
+
+<details>
+<summary>2.9 The project, step 12</summary>
+
+Create a CronJob that generates a new todo every hour to remind you to do 'Read <URL>', here <URL> is a Wikipedia article that was decided by the job randomly. It does not have to be a hyperlink, the user can copy-paste the URL from the todo.
+
+[https://en.wikipedia.org/wiki/Special:Random](https://en.wikipedia.org/wiki/Special:Random) responds with a redirect to a random Wikipedia page so you can ask it to provide a random article for you to read.
+
+**TIP:** Check location header
+
+**Release:** [tag 2.9](https://github.com/mykola-lp/fs-kubernetes/tree/2.9/todo_cronjob)
+
+</details>
