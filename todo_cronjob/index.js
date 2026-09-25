@@ -6,7 +6,14 @@ const WIKI_URL = process.env.WIKI_URL || 'https://en.wikipedia.org/wiki/Special:
 
 function getRandomArticleUrl() {
   return new Promise((resolve, reject) => {
-    https.get(WIKI_URL, (res) => {
+    https.get(
+      WIKI_URL,
+        {
+          headers: {
+            'User-Agent': 'fs-kubernetes-todo-cronjob/2.9 (https://github.com/mykola-lp/fs-kubernetes)',
+          },
+        },
+    (res) => {
       if (
         res.statusCode >= 300 &&
         res.statusCode < 400 &&
