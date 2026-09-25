@@ -19,10 +19,17 @@ function getRandomArticleUrl() {
         res.statusCode < 400 &&
         res.headers.location
       ) {
-        resolve(res.headers.location);
-        res.resume();
-        return;
-      }
+          const location = res.headers.location;
+
+          resolve(
+            location.startsWith('//')
+              ? `https:${location}`
+              : location
+          );
+
+          res.resume();
+          return;
+        }
 
       reject(new Error(`Unexpected response from Wikipedia: ${res.statusCode}`));
     }).on('error', reject);
