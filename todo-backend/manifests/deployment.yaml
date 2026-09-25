@@ -15,11 +15,28 @@ spec:
     spec:
       containers:
         - name: todo-backend
-          image: todo-backend:2.6
+          image: todo-backend:2.8
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
               value: "3000"
+            - name: POSTGRES_HOST
+              value: todo-postgres-svc
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: todo-postgres-secret
+                  key: POSTGRES_USER
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: todo-postgres-secret
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: todo-postgres-secret
+                  key: POSTGRES_DB
           resources:
             requests:
               cpu: 10m
