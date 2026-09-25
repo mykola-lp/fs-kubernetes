@@ -188,3 +188,31 @@ After:
 **Note:** the bulk of this exercise (creating the `exercises`/`project` namespaces, moving all resources, splitting the shared Ingress) was already done as part of 2.3. This commit just verifies everything landed correctly in the `project` namespace and removes one stale, unused manifest left over from the split.
 
 ![todo_app terminal result](./docs/2.3-result-terminal.png)
+
+### #2.9
+
+One-shot script that fetches a random Wikipedia article via `https://en.wikipedia.org/wiki/Special:Random` (reading the `Location` header from the redirect, without following it) and creates a `Read <URL>` todo via `todo-backend`. Runs as a Kubernetes CronJob, once every hour.
+
+**Configuration**
+
+`BACKEND_URL` and `WIKI_URL` come from `manifests/configmap.yaml`.
+
+**Deploy to Kubernetes (k3d)**
+
+```bash
+docker build -t todo-cronjob:2.9 .
+k3d image import todo-cronjob:2.9 -c k3s-default
+kubectl apply -f manifests/
+```
+
+**Manual test run**
+
+```bash
+kubectl -n project create job --from=cronjob/todo-random-reminder test-run-1
+kubectl -n project logs -l job-name=test-run-1
+kubectl -n project delete job test-run-1
+```
+
+#### Result
+
+![todo-cronjob terminal result](./docs/2.9-result-terminal.png)
