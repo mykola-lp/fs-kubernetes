@@ -110,14 +110,15 @@ Four tools, each responsible for one piece, wired together into a single pipelin
 - **Grafana** — the single UI on top of both. Prometheus and Loki have no real dashboard of their own; Grafana connects to both as datasources so metrics and logs can be explored side by side.
 
 ```mermaid
-%%{init: {"flowchart": {"nodeSpacing": 150, "rankSpacing": 20}}}%%
+%%{init: {"flowchart": {"nodeSpacing": 100, "rankSpacing": 20}}}%%
 flowchart LR
     subgraph cluster["Cluster"]
         subgraph collection["Collection"]
-            pods["Your Pods<br/>(applications)"]
             prom["Prometheus<br/>(metrics store)"]
             alloy["Alloy<br/>(log collector)"]
         end
+
+        pods["Your Pods<br/>(applications)"]
 
         loki["Loki<br/>(log store)"]
         grafana["Grafana<br/>(UI / dashboards)"]
