@@ -225,4 +225,6 @@ Request logging added: every request to `/todos` (GET, POST, 404, 500) is logged
 
 ![todo-backend terminal result](./docs/2.10-result-terminal-part1.png)
 
-![todo-backend grafana result](./docs/2.10-result-terminal-part2.png)
+![todo-backend terminal result](./docs/2.10-result-terminal-part2.png)
+
+![todo-backend grafana (browser) result](./docs/2.10-result-browser.png)
