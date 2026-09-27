@@ -131,6 +131,8 @@ kubectl run busybox-debug --rm -it \
 
 ## Chapter 2.
 
+### First Deploy
+
 <details>
 <summary>1.1 Getting started</summary>
 
@@ -191,6 +193,8 @@ You won't have access to the port yet but that'll come soon.
 
 </details>
 
+### Introduction to Networking
+
 <details>
 <summary>1.5 The project, step 3</summary>
 
@@ -248,6 +252,8 @@ In future exercises, this second application will be referred to as "ping-pong a
 
 </details>
 
+### Introduction to Storage
+
 <details>
 <summary>1.10 Even more services</summary>
 
@@ -301,6 +307,8 @@ It is time to start adding some real functionality to our project! As promised e
 
 ## Chapter 3.
 
+### Networking between pods
+
 <details>
 <summary>2.1 Connecting pods</summary>
 
@@ -338,6 +346,8 @@ This happens because once a local persistent volume is released, it cannot be re
 
 </details>
 
+### Organizing a cluster
+
 <details>
 <summary>2.3 Keep them separated</summary>
 
@@ -355,6 +365,8 @@ Create a namespace called project for the project and move everything related to
 **Release:** [tag 2.4](https://github.com/mykola-lp/fs-kubernetes/tree/2.4)
 
 </details>
+
+### Configuring applications
 
 <details>
 <summary>2.5 Documentation and ConfigMaps</summary>
@@ -400,6 +412,8 @@ Make sure that your project has no hard coded ports, URLs, or other configuratio
 
 </details>
 
+### StatefulSets and Jobs
+
 <details>
 <summary>2.7 Stateful applications</summary>
 
@@ -444,6 +458,8 @@ Create a CronJob that generates a new todo every hour to remind you to do 'Read 
 **Release:** [tag 2.9](https://github.com/mykola-lp/fs-kubernetes/tree/2.9/todo_cronjob)
 
 </details>
+
+### Monitoring
 
 <details>
 <summary>2.10 The project, step 13</summary>
