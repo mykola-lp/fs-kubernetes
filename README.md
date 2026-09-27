@@ -100,7 +100,46 @@ kubectl run busybox-debug --rm -it \
 * [Lens](https://k8slens.dev/) — Kubernetes IDE/dashboard for inspecting clusters, Pods, Deployments, Services and logs.
 * [Freelens](https://github.com/freelensapp/freelens) — open-source fork of Lens.
 
+**Monitoring**
+
+Four tools, each responsible for one piece, wired together into a single pipeline:
+
+- **Prometheus** — collects and stores *metrics* (numeric time series: CPU, memory, request rates) by pulling them from targets in the cluster.
+- **Loki** — stores *logs* (text), the log-equivalent of Prometheus — indexes only metadata, not full text, to stay lightweight.
+- **Alloy** — the agent that actually reads pod logs off each node's filesystem and pushes them into Loki. Without it, Loki has nothing to store — it doesn't collect anything itself.
+- **Grafana** — the single UI on top of both. Prometheus and Loki have no real dashboard of their own; Grafana connects to both as datasources so metrics and logs can be explored side by side.
+
+```mermaid
+%%{init: {"flowchart": {"nodeSpacing": 150, "rankSpacing": 20}}}%%
+flowchart LR
+    subgraph cluster["Cluster"]
+        subgraph collection["Collection"]
+            pods["Your Pods<br/>(applications)"]
+            prom["Prometheus<br/>(metrics store)"]
+            alloy["Alloy<br/>(log collector)"]
+        end
+
+        loki["Loki<br/>(log store)"]
+        grafana["Grafana<br/>(UI / dashboards)"]
+
+        prom -- "scrapes /metrics endpoint" --> pods
+        pods -- "stdout / stderr logs" --> alloy
+        alloy -- "push logs" --> loki
+        loki -- "logs for Explore" --> grafana
+        prom -- "metrics for dashboards" --> grafana
+    end
+
+    browser["Your browser"] -- "port-forward 3000:80" --> grafana
+```
+
 ## Key Concepts
+
+**k8s vs k3s vs k3d**
+- `k8s` — just short for "Kubernetes" (not a tool, just a common abbreviation)
+- `k3s` — a lightweight Kubernetes distribution (by Rancher), same core concepts, smaller footprint
+- `k3d` — a wrapper that runs k3s inside Docker containers, used to get a local Kubernetes cluster running quickly on a dev machine
+
+### General
 
 **Cluster** — a group of machines (nodes) working together as one unit. One or more are server nodes (control-plane, make decisions), the rest are agent nodes (run the actual workloads).
 
@@ -114,16 +153,29 @@ kubectl run busybox-debug --rm -it \
 
 **Volume** — a way to give a pod/container storage. `emptyDir` = temporary, tied to the pod's lifecycle (gone when pod dies). `PersistentVolume` + `PersistentVolumeClaim` = storage independent of any pod's lifecycle, survives restarts/deletions.
 
-**k8s vs k3s vs k3d**
-- `k8s` — just short for "Kubernetes" (not a tool, just a common abbreviation)
-- `k3s` — a lightweight Kubernetes distribution (by Rancher), same core concepts, smaller footprint
-- `k3d` — a wrapper that runs k3s inside Docker containers, used to get a local Kubernetes cluster running quickly on a dev machine
-
-## Storage
+### Storage
 
 **emptyDir** — a shared folder inside a single pod, used to pass files between two containers running together (like `writer`/`reader` in 1.10). It only exists as long as the pod exists — if the pod restarts or gets deleted, the data is gone and starts fresh. Good for temporary sharing, not for anything that needs to survive.
 
 **PersistentVolume (PV) + PersistentVolumeClaim (PVC)** — storage that lives independently of any pod. A PV represents actual disk space (e.g. a folder on a cluster node), a PVC is how a pod "claims" that storage for its own use. Since the data isn't tied to the pod's lifecycle, it survives pod restarts, deletions, and recreations. Use this whenever data actually needs to persist.
+
+### Organizing a cluster
+
+**Namespaces** — split one physical cluster into virtual clusters, one per project/team, so resources (Pods, Services, ConfigMaps) don't collide or get mixed up between unrelated apps (e.g. `exercises` vs `project` in this repo).
+
+**Labels** — key-value pairs attached to almost any resource, used to group and select things (e.g. `app: pingpong`). Unlike namespaces, labels are just metadata — freely added/changed/removed, and it's labels (via `selector`) that actually connect a Service to its Pods, not namespaces.
+
+#### Configuring applications
+
+**Secrets** — like a ConfigMap, but for sensitive values (API keys, passwords, tokens) that shouldn't sit in plain YAML or source code. Same mechanism as ConfigMaps (mounted as env vars or files), but base64-encoded by convention (not encrypted by default — real protection needs something like SOPS or a proper secrets manager on top). Example use case: an API key for an external service (e.g. Pixabay) needed to fetch images, passed to the pod as an env var instead of hardcoded.
+
+### StatefulSets and Jobs
+
+**Job** — runs a pod to completion for a one-off task (e.g. a migration, a single script), then stops — no restart once it exits successfully. Unlike a Deployment, it doesn't keep the pod alive forever, `restartPolicy` is `Never`/`OnFailure` instead of `Always`.
+
+**CronJob** — a Job that runs on a schedule (cron syntax), creating a new Job (and a new pod) on each trigger, rather than one long-running process that tracks time itself. Useful for periodic, short-lived tasks (e.g. a daily backup, an hourly reminder).
+
+**StatefulSet vs Deployment** — Deployment pods are interchangeable and disposable; StatefulSet pods get a stable identity (predictable name, e.g. `postgres-ss-0`) and their own persistent storage via `volumeClaimTemplates`, which survives pod restarts. Used for anything that needs to remember its own data, like a database.
 
 ## Chapter 1.
 
