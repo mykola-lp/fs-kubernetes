@@ -444,3 +444,16 @@ Create a CronJob that generates a new todo every hour to remind you to do 'Read 
 **Release:** [tag 2.9](https://github.com/mykola-lp/fs-kubernetes/tree/2.9/todo_cronjob)
 
 </details>
+
+<details>
+<summary>2.10 The project, step 13</summary>
+
+The project could really use logging.
+
+Add request logging so that you can monitor every todo that is sent to the backend.
+
+Set the limit of 140 characters for todos in the backend as well. Use Postman or curl to test that too long todos are blocked by the backend, and you can see the non-allowed messages in your Grafana.
+
+**Release:** [tag 2.10](https://github.com/mykola-lp/fs-kubernetes/tree/2.10/monitoring)
+
+</details>

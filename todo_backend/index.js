@@ -38,6 +38,12 @@ function getBody(req) {
   });
 }
 
+function logRequest(method, url, status, details = '') {
+  console.log(
+    `${new Date().toISOString()} ${method} ${url} -> ${status}${details ? ' ' + details : ''}`
+  );
+}
+
 const server = http.createServer(async (req, res) => {
   try {
     if (
@@ -48,6 +54,8 @@ const server = http.createServer(async (req, res) => {
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(rows));
+
+      logRequest('GET', '/todos', 200, `returned ${rows.length} todos`);
       return;
     }
 
@@ -60,8 +68,14 @@ const server = http.createServer(async (req, res) => {
       const content = params.get('content');
 
       if (!content || content.length > 140) {
+        const contentLength = content ? content.length : 0;
+        const preview = content ? content.slice(0, 60) : '';
+        const suffix = content && content.length > 60 ? '...' : '';
+
         res.writeHead(400, { 'Content-Type': 'text/plain' });
         res.end('Invalid todo content');
+
+        logRequest('POST', '/todos', 400, `rejected (length=${contentLength}): "${preview}${suffix}"`);
         return;
       }
 
@@ -72,15 +86,21 @@ const server = http.createServer(async (req, res) => {
 
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(rows[0]));
+
+      logRequest('POST', '/todos', 201, `created todo id=${rows[0].id}`);
       return;
     }
 
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not found');
+
+    logRequest(req.method, req.url, 404);
   } catch (err) {
     console.error(err);
     res.writeHead(500, { 'Content-Type': 'text/plain' });
     res.end('Database error');
+
+    logRequest(req.method, req.url, 500, err.message);
   }
 });
 

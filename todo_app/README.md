@@ -216,3 +216,15 @@ kubectl -n project delete job test-run-1
 #### Result
 
 ![todo-cronjob terminal result](./docs/2.9-result-terminal.png)
+
+### #2.10
+
+Request logging added: every request to `/todos` (GET, POST, 404, 500) is logged to stdout with timestamp, method, path, status, and — for POST — either the created todo id or the rejection reason (length + preview) when content exceeds 140 characters. Logs are collected by Alloy and visible in Grafana via Loki.
+
+#### Result
+
+![todo-backend terminal result](./docs/2.10-result-terminal-part1.png)
+
+![todo-backend terminal result](./docs/2.10-result-terminal-part2.png)
+
+![todo-backend grafana (browser) result](./docs/2.10-result-browser.png)
