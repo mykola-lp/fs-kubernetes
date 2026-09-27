@@ -104,10 +104,10 @@ kubectl run busybox-debug --rm -it \
 
 Four tools, each responsible for one piece, wired together into a single pipeline:
 
-- **Prometheus** — collects and stores *metrics* (numeric time series: CPU, memory, request rates) by pulling them from targets in the cluster.
-- **Loki** — stores *logs* (text), the log-equivalent of Prometheus — indexes only metadata, not full text, to stay lightweight.
-- **Alloy** — the agent that actually reads pod logs off each node's filesystem and pushes them into Loki. Without it, Loki has nothing to store — it doesn't collect anything itself.
-- **Grafana** — the single UI on top of both. Prometheus and Loki have no real dashboard of their own; Grafana connects to both as datasources so metrics and logs can be explored side by side.
+- [Prometheus](https://prometheus.io/)_ — collects and stores *metrics* (numeric time series: CPU, memory, request rates) by pulling them from targets in the cluster.
+- [Loki](https://grafana.com/oss/loki/) — stores *logs* (text), the log-equivalent of Prometheus — indexes only metadata, not full text, to stay lightweight.
+- [Alloy](https://grafana.com/oss/alloy-opentelemetry-collector/) — the agent that actually reads pod logs off each node's filesystem and pushes them into Loki. Without it, Loki has nothing to store — it doesn't collect anything itself.
+- [Grafana](https://grafana.com/oss/grafana/) — the single UI on top of both. Prometheus and Loki have no real dashboard of their own; Grafana connects to both as datasources so metrics and logs can be explored side by side.
 
 ```mermaid
 %%{init: {"flowchart": {"nodeSpacing": 100, "rankSpacing": 20}}}%%
