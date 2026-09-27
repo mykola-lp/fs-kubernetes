@@ -68,13 +68,14 @@ const server = http.createServer(async (req, res) => {
       const content = params.get('content');
 
       if (!content || content.length > 140) {
+        const contentLength = content ? content.length : 0;
+        const preview = content ? content.slice(0, 60) : '';
+        const suffix = content && content.length > 60 ? '...' : '';
+
         res.writeHead(400, { 'Content-Type': 'text/plain' });
         res.end('Invalid todo content');
 
-        logRequest(
-          'POST', '/todos', 400,
-          `rejected (length=${content ? content.length : 0}): "${preview}${content && content.length > 60 ? '...' : ''}"`
-        );
+        logRequest('POST', '/todos', 400, `rejected (length=${contentLength}): "${preview}${suffix}"`);
         return;
       }
 
