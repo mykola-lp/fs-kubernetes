@@ -526,3 +526,18 @@ Set the limit of 140 characters for todos in the backend as well. Use Postman or
 **Release:** [tag 2.10](https://github.com/mykola-lp/fs-kubernetes/tree/2.10/monitoring)
 
 </details>
+
+## Chapter 4.
+
+### Introduction to Google Kubernetes Engine
+
+<details>
+<summary>3.1. Pingpong GKE</summary>
+
+Deploy Ping-pong application into GKE.
+
+In this exercise use a LoadBalancer service to expose the service.
+
+**Release:** [tag 3.1](https://github.com/mykola-lp/fs-kubernetes/tree/3.1/pingpong)
+
+</details>
