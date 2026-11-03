@@ -51,3 +51,13 @@ In the browser: `http://localhost:8081/pingpong` — each page refresh increases
 ### #2.7
 
 ![pingpong_output result](./docs/2.7-result-terminal.png)
+
+### #3.1
+
+![pingpong_output result0](./docs/3.1-result-browser0.png)
+
+![pingpong_output result1](./docs/3.1-result-browser1.png)
+
+![pingpong_output result2](./docs/3.1-result-browser2.png)
+
+![pingpong_output result3](./docs/3.1-result-browser3.png)
