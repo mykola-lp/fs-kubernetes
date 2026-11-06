@@ -565,3 +565,18 @@ See the [Gateway API HTTP routing guide](https://gateway-api.sigs.k8s.io/guides/
 **Release:** [tag 3.3](https://github.com/mykola-lp/fs-kubernetes/tree/3.3/log_out)
 
 </details>
+
+<details>
+<summary>3.4 Rewritten routing</summary>
+
+After the previous exercise, your ping-pong app now most likely needs to respond to the URL `/pingpong` to work in the cluster setup.
+
+It would be nice if we were not forced to reflect the cluster-level URL structures in the applications, and instead, the app itself could provide the behavior in the root path `/`. Thanks to the flexibility of the Gateway API, this can be easily done by [route rewriting](https://gateway-api.sigs.k8s.io/guides/http-redirect-rewrite/).
+
+Make this change to your ping-pong app and to the HTTP route!
+
+See the [Gateway API HTTP redirect and rewrite guide](https://gateway-api.sigs.k8s.io/guides/user-guides/http-redirect-rewrite/).
+
+**Release:** [tag 3.4](https://github.com/mykola-lp/fs-kubernetes/tree/3.4/log_out)
+
+</details>
