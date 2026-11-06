@@ -24,7 +24,7 @@ spec:
                 path: information.txt
       containers:
         - name: writer
-          image: log-output-writer:1.10
+          image: log-output-writer:3.2
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -37,7 +37,7 @@ spec:
             - name: shared-status
               mountPath: /usr/src/app/files
         - name: reader
-          image: log-output-reader:2.5
+          image: log-output-reader:3.2
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT
