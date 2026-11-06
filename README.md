@@ -541,3 +541,15 @@ In this exercise use a LoadBalancer service to expose the service.
 **Release:** [tag 3.1](https://github.com/mykola-lp/fs-kubernetes/tree/3.1/pingpong)
 
 </details>
+
+<details>
+<summary>3.2 Back to Ingress</summary>
+
+Deploy the "Log output" and "Ping-pong" applications into GKE and expose it with Ingress.
+
+"Ping-pong" will have to respond from /pingpong path. This may require you to rewrite parts of the code.
+
+Note that Ingress expects a service to give a successful response in the path / even if the service is mapped to some other path!
+
+**Release:** [tag 3.2](https://github.com/mykola-lp/fs-kubernetes/tree/3.2)
+</details>
