@@ -39,6 +39,10 @@ const send = (res, status, body) => {
 
 const server = http.createServer(async (req, res) => {
   try {
+    if (req.method === 'GET' && req.url === '/') {
+      return send(res, 200, 'OK');
+    }
+
     if (
       req.method === 'GET' &&
       req.url === '/pingpong'
