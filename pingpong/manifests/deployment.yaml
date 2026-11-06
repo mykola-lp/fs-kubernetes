@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pingpong
-          image: 572357/pingpong:3.1
+          image: 572357/pingpong:3.2
           imagePullPolicy: IfNotPresent
           env:
             - name: PORT

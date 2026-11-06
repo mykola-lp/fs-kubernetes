@@ -4,10 +4,10 @@ metadata:
   name: pingpong-svc
   namespace: exercises
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: pingpong
   ports:
-    - port: 80
+    - port: 2347
       protocol: TCP
       targetPort: 3000
