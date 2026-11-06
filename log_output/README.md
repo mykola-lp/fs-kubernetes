@@ -163,3 +163,7 @@ Part2:
 ### #2.5
 
 ![Log output result (terminal)](./docs/2.5-result-terminal.png)
+
+### #3.3
+
+![Log output result (terminal)](./docs/3.3-result-terminal.png)

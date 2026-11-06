@@ -532,7 +532,7 @@ Set the limit of 140 characters for todos in the backend as well. Use Postman or
 ### Introduction to Google Kubernetes Engine
 
 <details>
-<summary>3.1. Pingpong GKE</summary>
+<summary>3.1 Pingpong GKE</summary>
 
 Deploy Ping-pong application into GKE.
 
@@ -552,4 +552,16 @@ Deploy the "Log output" and "Ping-pong" applications into GKE and expose it with
 Note that Ingress expects a service to give a successful response in the path / even if the service is mapped to some other path!
 
 **Release:** [tag 3.2](https://github.com/mykola-lp/fs-kubernetes/tree/3.2)
+
+</details>
+
+<details>
+<summary>3.3 To the Gateway</summary>
+
+Replace the Ingress with Gateway API in the "Log output" and "Ping-pong" applications.
+
+See the [Gateway API HTTP routing guide](https://gateway-api.sigs.k8s.io/guides/user-guides/http-routing/) for more about HTTP routing.
+
+**Release:** [tag 3.3](https://github.com/mykola-lp/fs-kubernetes/tree/3.3/log_out)
+
 </details>
